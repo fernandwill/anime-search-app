@@ -108,6 +108,10 @@ const searchSlice = createSlice({
         state.page = action.payload.currentPage;
       })
       .addCase(fetchAnimeSearch.rejected, (state, action) => {
+        if (action.error.name === 'AbortError') {
+          state.status = 'idle';
+          return;
+        }
         state.status = 'failed';
         state.error = action.error.message ?? 'Unable to fetch anime.';
       })
@@ -120,6 +124,10 @@ const searchSlice = createSlice({
         state.detail = action.payload;
       })
       .addCase(fetchAnimeDetails.rejected, (state, action) => {
+        if (action.error.name === 'AbortError') {
+          state.detailStatus = 'idle';
+          return;
+        }
         state.detailStatus = 'failed';
         state.detailError = action.error.message ?? 'Unable to load details.';
       });
