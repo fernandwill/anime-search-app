@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { Input, InputGroup, InputLeftElement, Icon } from '@chakra-ui/react';
+import { FiSearch } from 'react-icons/fi';
 
 interface SearchInputProps {
   value: string;
@@ -16,7 +16,7 @@ const SearchInput = ({ value, onChange, placeholder = 'Search for anime titles..
   return (
     <InputGroup size="lg">
       <InputLeftElement pointerEvents="none">
-        <SearchIcon color="whiteAlpha.500" />
+        <Icon as={FiSearch} color="whiteAlpha.500" />
       </InputLeftElement>
       <Input
         value={value}

@@ -9,7 +9,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { FiMoon, FiSun } from 'react-icons/fi';
 
 const AppHeader = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -32,7 +32,7 @@ const AppHeader = () => {
           </Link>
           <IconButton
             aria-label="Toggle color mode"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
             onClick={toggleColorMode}
             variant="ghost"
           />
