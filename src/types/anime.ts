@@ -24,6 +24,7 @@ export interface AnimeDetails extends AnimeSummary {
   duration?: string;
   genres?: Array<{ name: string }>;
   year?: number;
+  season?: string;
 }
 
 export interface SearchResponse {
