@@ -12,10 +12,33 @@ const theme = extendTheme({
     body: "'Outfit', 'Inter', system-ui, sans-serif",
   },
   styles: {
-    global: {
+    global: (props: { colorMode: 'light' | 'dark' }) => ({
       body: {
-        bg: 'gray.900',
-        color: 'gray.50',
+        bg: props.colorMode === 'light' ? 'gray.50' : 'gray.900',
+        color: props.colorMode === 'light' ? 'gray.900' : 'gray.50',
+        transitionProperty: 'background-color, color',
+        transitionDuration: '200ms',
+        transitionTimingFunction: 'ease-in-out',
+      },
+    }),
+  },
+  semanticTokens: {
+    colors: {
+      surface: {
+        default: 'white',
+        _dark: 'gray.900',
+      },
+      surfaceMuted: {
+        default: 'gray.100',
+        _dark: 'blackAlpha.400',
+      },
+      borderSubtle: {
+        default: 'blackAlpha.200',
+        _dark: 'whiteAlpha.200',
+      },
+      textMuted: {
+        default: 'gray.600',
+        _dark: 'whiteAlpha.700',
       },
     },
   },

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Box, Heading, Stack, Text, SimpleGrid, Skeleton, Badge, HStack } from '@chakra-ui/react';
+import { Box, Heading, Stack, Text, SimpleGrid, Skeleton, Badge, HStack, useColorModeValue } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '@/hooks/storeHooks';
 import { setQuery } from '@/features/search/searchSlice';
 import SearchInput from '@/components/search/SearchInput';
@@ -8,6 +8,9 @@ import EmptyState from '@/components/feedback/EmptyState';
 const SearchPage = () => {
   const dispatch = useAppDispatch();
   const { query, results, status } = useAppSelector((state) => state.search);
+  const mutedText = useColorModeValue('gray.600', 'whiteAlpha.700');
+  const cardBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
+  const cardBg = useColorModeValue('white', 'blackAlpha.400');
 
   const isLoading = status === 'loading';
 
@@ -21,7 +24,7 @@ const SearchPage = () => {
     <Stack spacing={10}>
       <Stack spacing={4} textAlign="center">
         <Heading size="2xl">Discover Your Next Anime</Heading>
-        <Text color="whiteAlpha.700" maxW="2xl" mx="auto">
+        <Text color={mutedText} maxW="2xl" mx="auto">
           {heroDescription}
         </Text>
         <Box maxW="lg" mx="auto" w="full">
@@ -56,11 +59,11 @@ const SearchPage = () => {
           )}
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
             {results.map((anime) => (
-              <Box key={anime.malId} borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="lg" p={4}>
+              <Box key={anime.malId} borderWidth="1px" borderColor={cardBorder} bg={cardBg} borderRadius="lg" p={4}>
                 <Heading size="sm" mb={2}>
                   {anime.title}
                 </Heading>
-                <Text noOfLines={3} color="whiteAlpha.700">
+                <Text noOfLines={3} color={mutedText}>
                   {anime.synopsis ?? 'Synopsis unavailable.'}
                 </Text>
                 <HStack spacing={4} mt={4}>

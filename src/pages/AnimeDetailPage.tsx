@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import { useParams, Link as RouterLink } from 'react-router-dom';
-import { Badge, Box, Button, Heading, Stack, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAppSelector } from '@/hooks/storeHooks';
 
 const AnimeDetailPage = () => {
   const { malId } = useParams();
   const selected = useAppSelector((state) => state.search.results.find((anime) => String(anime.malId) === malId));
+  const mutedText = useColorModeValue('gray.600', 'whiteAlpha.700');
+  const cardBorder = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
+  const cardBg = useColorModeValue('white', 'blackAlpha.400');
 
   const fallbackDescription = useMemo(
     () =>
@@ -19,10 +22,10 @@ const AnimeDetailPage = () => {
         Back to search
       </Button>
       <Heading size="2xl">{selected?.title ?? 'Anime detail coming soon'}</Heading>
-      <Text fontSize="lg" color="whiteAlpha.700">
+      <Text fontSize="lg" color={mutedText}>
         {selected?.synopsis ?? fallbackDescription}
       </Text>
-      <Box borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="lg" p={6}>
+      <Box borderWidth="1px" borderColor={cardBorder} borderRadius="lg" p={6} bg={cardBg}>
         <Heading size="md" mb={4}>
           Placeholder Metadata
         </Heading>

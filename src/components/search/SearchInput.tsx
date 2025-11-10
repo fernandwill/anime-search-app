@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Input, InputGroup, InputLeftElement, Icon } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement, Icon, useColorModeValue } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi';
 
 interface SearchInputProps {
@@ -9,6 +9,11 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({ value, onChange, placeholder = 'Search for anime titles...' }: SearchInputProps) => {
+  const inputBg = useColorModeValue('white', 'whiteAlpha.50');
+  const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
+  const placeholderColor = useColorModeValue('gray.500', 'whiteAlpha.500');
+  const iconColor = useColorModeValue('gray.400', 'whiteAlpha.500');
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -16,17 +21,17 @@ const SearchInput = ({ value, onChange, placeholder = 'Search for anime titles..
   return (
     <InputGroup size="lg">
       <InputLeftElement pointerEvents="none">
-        <Icon as={FiSearch} color="whiteAlpha.500" />
+        <Icon as={FiSearch} color={iconColor} />
       </InputLeftElement>
       <Input
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
         borderRadius="full"
-        bg="whiteAlpha.50"
-        borderColor="whiteAlpha.200"
+        bg={inputBg}
+        borderColor={borderColor}
         focusBorderColor="brand.400"
-        _placeholder={{ color: 'whiteAlpha.500' }}
+        _placeholder={{ color: placeholderColor }}
       />
     </InputGroup>
   );
