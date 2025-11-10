@@ -1,0 +1,9 @@
+node_modules
+dist
+*.log
+*.lock
+coverage
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+vite.config.ts.timestamp
